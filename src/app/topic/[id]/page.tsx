@@ -13,7 +13,7 @@ function ReplyItem({reply}: {reply: V2EXAPI.TopicReply}) {
 }
 
 export default async function TopicItem({params}: {params: {id: string}}) {
-    const detail = await V2EXAPI.getTopicDetail(decodeURIComponent(params.id))
+    const detail = await V2EXAPI.getTopicDetail(params.id)
     const content = {__html: detail.content}
     return (
         <>

@@ -141,10 +141,10 @@ export const getTopicListByTab = async (tab: string): Promise<Topic[]> => {
       const nodeElement = $(cell).find('a.node');
 
       const topic = new Topic();
-      const topicHref = topicElement.attr('href')?.split('#')[0];
+      const topicHref = topicElement.attr('href')?.split('#')[0]; // '/t/123411'
       topic.title = topicElement.text().trim();
       topic.link = 'https://www.v2ex.com' + topicHref;
-      topic.id = topicHref?.split('/')[1] || '';
+      topic.id = topicHref?.split('/')[2] || '';
 
       topic.node = {
         name: nodeElement.attr('href')?.split('go/')[1] || '',
@@ -154,7 +154,8 @@ export const getTopicListByTab = async (tab: string): Promise<Topic[]> => {
     });
     return list;
 }
-export const getTopicDetail = async (topicLink: string): Promise<TopicDetail> => {
+export const getTopicDetail = async (id: string): Promise<TopicDetail> => {
+  const topicLink = `https://www.v2ex.com/t/${id}`
   const data = await fetch(`${topicLink}?p=1`);
   const html = await data.text();
   const $ = cheerio.load(html);

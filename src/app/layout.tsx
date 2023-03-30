@@ -19,7 +19,6 @@ export default function RootLayout({
             <ul>
               <li><Link href="/">Home</Link></li>
               <li><Link href="/tab">tab</Link></li>
-              <li><Link href="/topic">topic</Link></li>
               <li><Link href="/about">about</Link></li>
             </ul>
           </nav>
